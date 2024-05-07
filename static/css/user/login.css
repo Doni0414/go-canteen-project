@@ -1,0 +1,78 @@
+@import url(base.css);
+
+#reg-form {
+    width: fit-content;
+    margin: 110px auto;
+    border-radius: 5px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    padding-bottom: 65px;
+}
+
+.form-btn {
+    width: 273px;
+    height: 105px;
+    background-color: #F3F3F3;
+    color: #0089D0;
+    font-weight: 500;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.form-clicked-btn {
+    background-color: #FFFFFF;
+    color: #505050;
+}
+
+.fields {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 65px;
+}
+
+.field {
+    width: 357px;
+    border-radius: 7px;
+    border: 1px solid #B5B5B5;
+    color: #B5B5B5;
+    padding: 14px 0 13px 9px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    width: 357px;
+    height: 87px;
+    background-color: #FEBD01;
+    border-radius: 15px;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    display: block;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-message {
+    color: red;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+    display: block;
+}
+
+.success-message {
+    color: rgb(2, 189, 39);
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+    display: block;
+}

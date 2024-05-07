@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="/static/css/user/cart.css">
+    <script src="https://kit.fontawesome.com/7fb7fffe92.js" crossorigin="anonymous"></script>
+</head>
+<body>
+{{template "user_navbar" .}}
+<div class="content">
+    {{if eq (len .CartResult.Cart) 0}}
+    <h1 id="cart-header">В вашей корзине пусто.</h1>
+    <h2 id="empty-cart-text">Воспользуйтесь поиском, чтобы найти то, что Вам нужно.</h2>
+    {{else}}
+    <h1 id="cart-header">Корзина</h1>
+    <div class="container">
+        <div id="products">
+            <div id="products-header">
+                <span>Товары</span>
+                <span>Цена</span>
+                <span>Количество</span>
+                <span>Сумма</span>
+            </div>
+            {{range .CartResult.Cart}}
+            <div class="product">
+                <input class="cart-id-container" type="hidden" name="cart-id" value="{{.ID}}">
+                <img class="product-img" src="{{.Product.Image}}" alt="">
+                <div class="product-description">
+                    <span class="product-name">{{.Product.Name}}</span>
+                    <span class="product-date">Добавлено: {{.GetDate}}</span>
+                    <form action="/user/cart/removeFromCart" method="post">
+                        <input type="hidden" value="{{.ID}}" name="cart-id">
+                        <button class="delete-btn">Удалить</button>
+                    </form>
+                </div>
+                <span class="product-price">{{.Product.Price}} ₸</span>
+                <input placeholder="{{.Quantity}}" class="product-quantity" type="number" value="{{.Quantity}}" min="1">
+                <span class="product-total-price">{{.TotalPrice}} ₸</span>
+            </div>
+            {{end}}
+        </div>
+        <form id="order-container" action="/user/order/makeOrder" method="post">
+            <div id="order-header">Оформить заказ</div>
+            <span id="total-price-container">Сумма: <span id="total-price">{{.CartResult.TotalPrice}} ₸</span></span>
+            <button id="order-btn">Оформить заказ</button>
+        </form>
+    </div>
+    {{end}}
+</div>
+{{ template "footer" .}}
+<script src="/static/js/user/base.js"></script>
+<script src="/static/js/user/cart.js"></script>
+</body>
+</html>

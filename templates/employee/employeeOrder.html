@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои заказы</title>
+    <link rel="stylesheet" href="/static/css/employee/order.css">
+    <script src="https://kit.fontawesome.com/7fb7fffe92.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form id="comment-container" method="post" action="#">
+        <input type="hidden" name="id" value="{{.order.ID}}">
+        <div id="comment-header">
+                <h1>Ваш комментарий</h1>
+                <i id="exit-icon" class="fa-solid fa-xmark"></i>
+        </div>
+        <input type="text" id="comment-input" placeholder="Необязательно" name="comment">
+        <button id="send-comment-btn">Отправить</button>
+    </form>
+    {{template "employee_navbar" .}}
+    <div class="content">
+        <h1 id="order-header">Заказ {{.order.ID}}</h1>
+        <div class="container">
+            <div id="order-details-container">
+                <div id="order-status-container">
+                    <h1>Статус заказа:</h1>
+                    <div class="order-status {{.order.GetStatusCSSClass}}">{{.order.Status}}</div>
+                </div>
+                <div id="payment-info">
+                    <h1>Информация об оплате</h1>
+                    <span id="total-sum-container">Общая сумма: <span id="total-sum">{{.order.TotalPrice}} ₸</span></span>
+                    <span id="payment-status-container">Статус оплаты: <span id="payment-status">Оплачен</span></span>
+                </div>
+                <div id="products">
+                    {{range .order.OrderDetails}}
+                    <div class="product">
+                        <img src="{{.Product.Image}}" alt="" class="product-img">
+                        <div class="product-description">
+                            <span class="product-name">{{.Product.Name}}</span>
+                            <span class="product-price">{{.Product.Price}} ₸ <span class="product-quantity">х {{.Quantity}}шт.</span></span>
+                        </div>                        
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+            <div id="history-details">
+                <div id="status-btns">
+                    <button id="next-btn" class="status-btn {{if .order.IsFinished}}inactive-btn{{end}}" {{if .order.IsFinished}}style="background-color: #8D8D8D;cursor: default;"{{end}}>Следующий</button>
+                    <button id="reject-btn" class="status-btn {{if .order.IsFinished}}inactive-btn{{end}}" {{if .order.IsFinished}}style="background-color: #8D8D8D;cursor: default;"{{end}}>Отклонить</button>
+                </div>
+                <h1 id="history-header">История заказа:</h1>
+                <div id="histories">
+                    {{range .order.OrderHistories}}
+                    <div class="history">
+                        <span class="history-date">{{.GetDate}}</span>
+                        <span class="history-status">{{.Status}}</span>
+                        {{if not .HasEmptyComment}}
+                        <div class="history-comment">Комментарий: {{.Comment}}</div>
+                        {{end}}
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{template "footer" .}}
+    <script src="/static/js/employee/base.js"></script>
+    <script src="/static/js/employee/order.js"></script>
+</body>
+</html>

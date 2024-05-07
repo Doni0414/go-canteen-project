@@ -1,0 +1,103 @@
+{{ define "user_navbar"}}
+<div class="navbar">
+    <a href="/user/main" id="logo-container">
+        <img class="logo logo-blue" src="/static/images/logo-blue.png" alt="">
+    </a>
+    <form class="search-container" action="/user/main" method="get">
+        {{if .result}}
+        <input type="hidden" value="{{.result.CategoryId}}" name="category">
+        {{end}}
+        <input type="text" id="search" placeholder="Поиск" name="q" {{if .result}}value="{{.result.Query}}"{{end}}>
+        <button id="search-btn" class="btn">Найти</button>
+    </form>
+        {{ if .user }} 
+        <div id="user-container">
+            <div id="user">
+                <i class="fa-solid fa-user"></i>
+                <span>{{.user.FirstName}}</span>
+            </div>
+            <div id="nav-menu-container">
+                <ul id="nav-menu">
+                    <a href="">
+                        <li class="nav-item">Профиль</li>
+                    </a>
+                    <a href="/user/orders">
+                        <li class="nav-item">Заказы</li>
+                    </a>
+                    <a href="/auth/logout">
+                        <li class="nav-item">Выйти</li>
+                    </a>
+                </ul> 
+            </div>
+            <a id="cart" href="/user/cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Корзина</span>
+            </a>
+        </div>
+        {{ else }}
+        <div id="auth-container">
+            <a id="nav-signup-btn" href="/auth?signup">Регистрация</a>
+            <a href="/auth?login">
+                <button id="nav-login-btn" class="btn">Логин</button>
+            </a>
+        </div>
+        {{ end }}
+</div>
+{{end}}
+
+{{ define "employee_navbar"}}
+<div class="navbar">
+    <a href="/employee/main" id="logo-container">
+        <img class="logo logo-blue" src="/static/images/logo-blue.png" alt="">
+    </a>
+    <form class="search-container" action="/employee/main" method="get">
+        {{if .result}}
+        <input type="hidden" value="{{.result.CategoryId}}" name="category">
+        {{end}}
+        <input type="text" id="search" placeholder="Поиск" name="q" {{if .result}}value="{{.result.Query}}"{{end}}>
+        <button id="search-btn" class="btn">Найти</button>
+    </form>
+        {{ if .user }} 
+        <div id="user-container">
+            <div id="user">
+                <i class="fa-solid fa-user"></i>
+                <span>{{.user.FirstName}}</span>
+            </div>
+            <div id="nav-menu-container">
+                <ul id="nav-menu">
+                    <a href="">
+                        <li class="nav-item">Профиль</li>
+                    </a>
+                    <a href="/employee/orders" >
+                        <li class="nav-item">Заказы</li>
+                    </a>
+                    <a href="/auth/logout">
+                        <li class="nav-item">Выйти</li>
+                    </a>
+                </ul> 
+            </div>
+        </div>
+        {{ else }}
+        <div id="auth-container">
+            <a id="nav-signup-btn" href="/auth?signup">Регистрация</a>
+            <a href="/auth?login">
+                <button id="nav-login-btn" class="btn">Логин</button>
+            </a>
+        </div>
+        {{ end }}
+</div>
+{{end}}
+
+{{define "footer"}}
+
+    <div class="footer">
+        <img class="logo logo-white" src="/static/images/logo-white.png" alt="">
+        <span id="rights-text">© 2024-2024 <a href="#">ТОО «Go.kz»</a> Казахстан</span>
+        <div id="social-networks">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <i class="fa-brands fa-vk"></i>
+        </div>
+    </div>
+{{ end }}

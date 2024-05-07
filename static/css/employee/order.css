@@ -1,0 +1,261 @@
+@import url(base.css);
+
+#comment-container {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 546px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+#comment-container #comment-header {
+    width: 100%;
+    height: 105px;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    margin-bottom: 46px;
+}
+
+#comment-container #comment-header h1 {
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 126px;
+    display: inline-block;
+}
+
+#comment-container #comment-header .fa-solid {
+    margin-right: 36px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#comment-container #comment-input {
+    width: 357px;
+    border-radius: 7px;
+    border: 1px solid #B5B5B5;
+    color: #B5B5B5;
+    padding: 14px 0 13px 9px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    margin-top: 20px;  
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 63px;
+}
+
+#comment-container #send-comment-btn {
+    width: 357px;
+    height: 87px;
+    background-color: #4CDF3F;
+    border-radius: 15px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.content {
+    margin-left: 120px;
+    margin-right: 120px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#order-header {
+    margin-top: 79px;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container #order-details-container #order-status-container {
+    margin-bottom: 40px;
+}
+
+.container #order-details-container #order-status-container h1{
+    margin-bottom: 21px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.container #order-details-container #order-status-container .order-status {
+    width: 207px;
+    height: 59px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.status-pending {
+    background-color: #FFC90A;
+}
+
+.status-rejected {
+    background-color: #DF3F3F;
+}
+
+.status-preparing {
+    background-color: #DF8C3F;
+}
+
+.status-delivery {
+    background-color: #FF7A00;
+}
+
+.status-delivered {
+    background-color: #4CDF3F;
+}
+
+.container #order-details-container #payment-info {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.container #order-details-container #payment-info h1 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 21px;
+}
+
+.container #order-details-container #payment-info #total-sum-container {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container #order-details-container #payment-info #total-sum-container #total-sum {
+    color: #AF0000;
+}
+
+.container #order-details-container #payment-info #payment-status-container #payment-status {
+    color: #4CDF3F;
+}
+#products {
+    margin-bottom: 100px;
+}
+
+#products .product {
+    margin-bottom: 30px;
+    display: flex;
+}
+
+#products .product .product-img {
+    width: 350px;
+    height: 231px;
+}
+
+#products .product .product-description {
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    display: block;
+}
+
+#products .product .product-description .product-name {
+    width: 455px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+#products .product .product-description .product-price {
+    display: block;
+    color: #AF0000;
+    font-weight: 500;
+}
+
+#products .product .product-description .product-price .product-quantity {
+    color: black;
+}
+
+/* #history-details { */
+/* } */
+
+#status-btns {
+    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#status-btns .status-btn {
+    width: 207px;
+    height: 59px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#next-btn {
+    background-color: #4CDF3F;
+}
+
+#reject-btn {
+    background-color: #DF3F3F;
+}
+
+#history-header {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+
+#histories {
+    width: 500px;
+}
+
+#histories .history {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#histories .history .history-date {
+    font-size: 25px;
+    color: #282828;
+    margin-right: 34px;
+}
+
+#histories .history .history-status {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#histories .history .history-comment {
+    font-size: 25px;
+    width: 100%;
+}
+
+.inactive-btn {
+    background-color: #8D8D8D;
+    cursor: default;
+}

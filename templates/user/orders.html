@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои заказы</title>
+    <link rel="stylesheet" href="/static/css/user/orders.css">
+    <script src="https://kit.fontawesome.com/7fb7fffe92.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {{template "user_navbar" .}}
+    <div class="content">
+        <h1 id="header">Мои заказы</h1>
+        {{if eq (len .orders) 0}}
+        <h2 id="empty-orders-text">Ваша история заказов пуста.</h2>
+        {{else}}
+        <div id="orders">
+            {{range .orders}}
+            <div class="order">
+                <div class="order-description">
+                    <a href="/user/orders/order?id={{.ID}}" class="order-info">Заказ #{{.ID}}</a>
+                    <span class="order-products">{{.GetProducts}}</span>
+                    <span class="order-date">Дата: {{.GetDate}}</span>
+                </div>
+                <div class="order-status {{.GetStatusCSSClass}}">{{.Status}}</div>
+            </div>
+            {{end}}
+        </div>
+        {{end}}
+    </div>
+
+    {{template "footer" .}}
+    <script src="/static/js/user/base.js"></script>
+</body>
+</html>

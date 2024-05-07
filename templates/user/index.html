@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная Страница</title>
+    <link rel="stylesheet" href="/static/css/user/index.css">
+    <script src="https://kit.fontawesome.com/7fb7fffe92.js" crossorigin="anonymous"></script>
+</head>
+<body>
+{{template "user_navbar" .}}
+<div class="content">
+    <ul id="categories">
+        <a href="/user/main?{{if .result}}q={{.result.Query}}{{end}}">
+            <li class="category">Все</li>
+        </a>
+        <a href="/user/main?category=2&{{if .result}}q={{.result.Query}}{{end}}">
+            <li class="category">Горячие блюда</li>
+        </a>
+        <a href="/user/main?category=3&{{if .result}}q={{.result.Query}}{{end}}">
+            <li class="category">Фаст-фуд</li>
+        </a>
+        <a href="/user/main?category=4&{{if .result}}q={{.result.Query}}{{end}}">
+            <li class="category">Напитки</li>
+        </a>
+        <a href="/user/main?category=5&{{if .result}}q={{.result.Query}}{{end}}">
+            <li class="category">Десерт</li>
+        </a>
+    </ul>
+    
+    <h3 id="category-header">{{.result.CategoryName}}</h3>
+
+    <div id="items">
+        {{if eq (len .result.Products) 0}}
+        <h3 id="nothing-found-text">Ничего не найдено</h3>
+        {{else}}
+        {{range .result.Products}}
+        <form class="item" action="/user/cart/addToCart?q={{$.result.Query}}&category={{$.result.CategoryId}}&page={{$.result.CurrentPage}}" method="post">
+            <input type="hidden" name="product-id" value="{{.ID}}">
+            <img class="item-img" src="{{.Image}}" alt="">
+            <span class="item-category">{{.Category.Name}}</span>
+            <span class="item-name">{{.Name}}</span>
+            <div class="price-container">
+                <span class="item-price">{{.Price}} ₸</span>
+                <span class="item-quantity">x{{.NumOfStock}}</span>
+            </div>
+            <div class="add-btn-container">
+                <button class="add-btn">В корзину</button>
+                <div class="quantity-container">
+                    <span>Кол.</span>
+                    <input type="number" placeholder="x{{.NumOfStock}}" name="quantity" min="1">
+                </div>
+            </div>
+        </form>
+        {{end}}
+        {{end}}
+        
+    </div>
+
+    <div id="pages-container">
+        <a href="/user/main?q={{.result.Query}}&category={{.result.CategoryId}}&page={{.result.PreviousPage}}" class="page-nav-btn {{if .result.IsFirstPage}}active-page{{end}}" id="previous-page-btn">Предыдущая</a>
+        <div id="pages">
+            {{range $i := sequence .result.FirstPage .result.LastPage}}
+            <a href="/user/main?q={{$.result.Query}}&category={{$.result.CategoryId}}&page={{$i}}" class="page {{if eq $i $.result.CurrentPage}}active-page{{end}}">{{$i}}</a>
+            {{end}}
+        </div>
+        <a href="/user/main?q={{.result.Query}}&category={{.result.CategoryId}}&page={{.result.NextPage}}" class="page-nav-btn {{if .result.IsLastPage}}active-page{{end}}" id="next-page-btn">Следующая</a>
+    </div>
+</div>
+{{ template "footer" .}}
+<script src="/static/js/user/base.js"></script>
+</body>
+</html>

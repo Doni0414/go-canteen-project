@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логин/Регистрация</title>
+    <link rel="stylesheet" href="/static/css/user/login.css">
+    <script src="https://kit.fontawesome.com/7fb7fffe92.js" crossorigin="anonymous"></script>
+</head>
+<body>
+{{if .user}}
+    {{if eq .user.Role "employee"}}
+        {{template "employee_navbar" .}}
+    {{else}}
+        {{ template "user_navbar" .}}
+    {{end}}
+{{else}}
+{{ template "user_navbar" .}}
+{{end}}
+<form id="reg-form" action="/auth" method="post">
+    <div>
+        <button class="btn form-btn" id="form-login-btn">Логин</button>
+        <button class="btn form-btn" id="form-signup-btn">Регистрация</button>
+    </div>
+    <div class="fields">
+        <div id="login-inputs" >
+            <input type="email" class="field" name="login-email" placeholder="Электронная почта" required {{if .loginUser }} value="{{ .loginUser.Email }}" {{ end }}>
+            <input type="password" class="field" name="login-password" placeholder="Пароль" required>
+        </div>
+        <div id="reg-inputs">
+            <input type="text" class="field" name="firstname" placeholder="Имя" required {{ if .signupUser }} value="{{ .signupUser.FirstName }}" {{ end }}>
+            <input type="text" class="field" name="lastname" placeholder="Фамилия" required {{ if .signupUser }} value="{{ .signupUser.LastName }}" {{ end }}>
+            <input type="email" class="field" name="email" placeholder="Электронная почта" required {{ if .signupUser }} value="{{ .signupUser.Email }}" {{ end }}>
+            <input type="password" class="field" name="password" placeholder="Пароль" required>
+            <input type="password" class="field" name="confirmation-password" placeholder="Повторите пароль" required>
+        </div>
+        <input id="auth-type" name="auth-type" type="hidden" value="">
+        {{ if .error }}
+        <span class="error-message">{{ .error }}</span>
+        {{ end }}
+    </div>
+    <button id="registration-btn" class="btn submit-btn">Логин</button>
+</form>
+{{ template "footer" .}}
+<script src="/static/js/user/login.js"></script>
+<script src="/static/js/user/base.js"></script>
+</body>
+</html>

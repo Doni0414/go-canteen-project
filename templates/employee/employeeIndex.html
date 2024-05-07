@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная Страница</title>
+    <link rel="stylesheet" href="/static/css/employee/index.css">
+    <script src="https://kit.fontawesome.com/7fb7fffe92.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<input id="search-category-id" type="hidden" name="search_category_id" value="{{.result.CategoryId}}">
+<input id="search-q" type="hidden" name="q" value="{{.result.Query}}">
+<input id="search-page" type="hidden" name="page" value="{{.result.CurrentPage}}">
+<div id="create-product-container" class="product-action-container">
+    <div class="header">
+            <h1>Создать</h1>
+            <i id="exit-icon" class="fa-solid fa-xmark exit-btn"></i>
+    </div>
+    <input type="text" id="create-product-name" name="name" class="form-input" placeholder="Название продукта" required>
+    <select name="category_id" id="create-product-category-id" class="form-input" required>
+        <option value="2">Горячие блюда</option>
+        <option value="3">Фаст-фуд</option>
+        <option value="4">Напитки</option>
+        <option value="5">Десерт</option>
+    </select>
+    <input type="number" id="create-product-price" name="price" class="form-input" placeholder="Цена ₸" required>
+    <input type="file" id="create-product-image" class="form-input" name="image" id="" placeholder="Изображение" accept="image/png, image/gif, image/jpeg, image/webp" required>
+    <span id="creation-error-message" class="error-message"></span>
+    <button id="create-product-btn">Создать</button>
+</div>
+
+<div id="edit-product-container" class="product-action-container">
+    <div class="header">
+            <h1>Редактировать</h1>
+            <i id="exit-icon" class="fa-solid fa-xmark exit-btn"></i>
+    </div>
+    <input type="hidden" name="edit-product-id" id="edit-product-id">
+    <input id="edit-product-name" type="text" class="form-input" placeholder="Название продукта">
+    <select name="category_id" id="edit-product-category-id" class="form-input">
+        <option value="2">Горячие блюда</option>
+        <option value="3">Фаст-фуд</option>
+        <option value="4">Напитки</option>
+        <option value="5">Десерт</option>
+    </select>
+    <input id="edit-product-price" type="number" class="form-input" placeholder="Цена ₸">
+    <input id="edit-product-image" type="file" class="form-input" name="">
+    <span id="edit-error-message" class="error-message"></span>
+    <button id="edit-product-btn">Редактировать</button>
+</div>
+
+<div id="darken">
+{{template "employee_navbar" .}}
+<div class="content">
+    <div id="categories-create-btn-container">
+        <ul id="categories">
+            <a href="/employee/main?{{if .result}}q={{.result.Query}}{{end}}">
+                <li class="category">Все</li>
+            </a>
+            <a href="/employee/main?category=2&{{if .result}}q={{.result.Query}}{{end}}">
+                <li class="category">Горячие блюда</li>
+            </a>
+            <a href="/employee/main?category=3&{{if .result}}q={{.result.Query}}{{end}}">
+                <li class="category">Фаст-фуд</li>
+            </a>
+            <a href="/employee/main?category=4&{{if .result}}q={{.result.Query}}{{end}}">
+                <li class="category">Напитки</li>
+            </a>
+            <a href="/employee/main?category=5&{{if .result}}q={{.result.Query}}{{end}}">
+                <li class="category">Десерт</li>
+            </a>
+        </ul>
+        <button id="create-btn">Создать <span id="plus-icon">+</span></button>
+    </div>
+    
+    <h3 id="category-header">{{.result.CategoryName}}</h3>
+
+    <div id="items">
+        {{if eq (len .result.Products) 0}}
+        <h3 id="nothing-found-text">Ничего не найдено</h3>
+        {{else}}
+        {{range .result.Products}}
+        <div class="item">
+            <input class="product-id-container" type="hidden" name="product-id" value="{{.ID}}">
+            <img class="item-img" src="{{.Image}}" alt="">
+            <span class="item-category">{{.Category.Name}}</span>
+            <span class="item-name">{{.Name}}</span>
+            <div class="price-container">
+                <span class="item-price">{{.Price}} ₸</span>
+            </div>
+            <div class="btns-container">
+                <button class="edit-btn action-btn">Редактировать</button>
+                <form action="/employee/products/delete" method="post" class="delete-btn-container">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <input type="hidden" name="search_category_id" value="{{$.result.CategoryId}}">
+                    <input type="hidden" name="q" value="{{$.result.Query}}">
+                    <input type="hidden" name="page" value="{{$.result.CurrentPage}}">
+                    <button class="delete-btn action-btn">Удалить</button>
+                </form>
+            </div>
+        </div>
+        {{end}}
+        {{end}}
+    </div>
+
+    <div id="pages-container">
+        <a href="/employee/main?q={{.result.Query}}&category={{.result.CategoryId}}&page={{.result.PreviousPage}}" class="page-nav-btn {{if .result.IsFirstPage}}active-page{{end}}" id="previous-page-btn">Предыдущая</a>
+        <div id="pages">
+            {{range $i := sequence .result.FirstPage .result.LastPage}}
+            <a href="/employee/main?q={{$.result.Query}}&category={{$.result.CategoryId}}&page={{$i}}" class="page {{if eq $i $.result.CurrentPage}}active-page{{end}}">{{$i}}</a>
+            {{end}}
+        </div>
+        <a href="/employee/main?q={{.result.Query}}&category={{.result.CategoryId}}&page={{.result.NextPage}}" class="page-nav-btn {{if .result.IsLastPage}}active-page{{end}}" id="next-page-btn">Следующая</a>
+    </div>
+</div>
+{{ template "footer" .}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/static/js/user/base.js"></script>
+<script src="/static/js/employee/index.js"></script>
+</body>
+</html>

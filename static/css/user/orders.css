@@ -1,0 +1,89 @@
+@import url(base.css);
+
+.content {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+#header {
+    margin-top: 79px;
+    margin-bottom: 58px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+#empty-orders-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: #4B4B4B;
+    margin-bottom: 500px;
+}
+
+#orders {
+    margin-bottom: 80px;
+}
+
+#orders .order {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    width: 1681px;
+    padding: 25px 25px 50px 25px;
+    border: 1px solid rgba(141, 141, 141, 0.4);
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#orders .order .order-description .order-info {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#orders .order .order-description .order-products {
+    width: 1300px;
+    font-size: 25px;
+    margin-bottom: 43px;
+    display: block;
+}
+
+#orders .order .order-description .order-date {
+    color: #2F2F2F;
+    font-size: 22px;
+}
+
+#orders .order .order-status {
+    width: 207px;
+    height: 59px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.status-pending {
+    background-color: #FFC90A;
+}
+
+.status-rejected {
+    background-color: #DF3F3F;
+}
+
+.status-preparing {
+    background-color: #DF8C3F;
+}
+
+.status-delivery {
+    background-color: #FF7A00;
+}
+
+.status-delivered {
+    background-color: #4CDF3F;
+}

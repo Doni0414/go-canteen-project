@@ -1,0 +1,155 @@
+@import url(base.css);
+
+.content {
+    margin-left: 120px;
+    margin-right: 120px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#order-header {
+    margin-top: 79px;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container #order-details-container #order-status-container {
+    margin-bottom: 40px;
+}
+
+.container #order-details-container #order-status-container h1{
+    margin-bottom: 21px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.container #order-details-container #order-status-container .order-status {
+    width: 207px;
+    height: 59px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.status-pending {
+    background-color: #FFC90A;
+}
+
+.status-rejected {
+    background-color: #DF3F3F;
+}
+
+.status-preparing {
+    background-color: #DF8C3F;
+}
+
+.status-delivery {
+    background-color: #FF7A00;
+}
+
+.status-delivered {
+    background-color: #4CDF3F;
+}
+
+.container #order-details-container #payment-info {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.container #order-details-container #payment-info h1 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 21px;
+}
+
+.container #order-details-container #payment-info #total-sum-container {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container #order-details-container #payment-info #total-sum-container #total-sum {
+    color: #AF0000;
+}
+
+.container #order-details-container #payment-info #payment-status-container #payment-status {
+    color: #4CDF3F;
+}
+#products {
+    margin-bottom: 100px;
+}
+
+#products .product {
+    margin-bottom: 30px;
+    display: flex;
+}
+
+#products .product .product-img {
+    width: 350px;
+    height: 231px;
+}
+
+#products .product .product-description {
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    display: block;
+}
+
+#products .product .product-description .product-name {
+    width: 455px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+#products .product .product-description .product-price {
+    display: block;
+    color: #AF0000;
+    font-weight: 500;
+}
+
+#products .product .product-description .product-price .product-quantity {
+    color: black;
+}
+
+#history-header {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+
+#histories {
+    width: 500px;
+}
+
+#histories .history {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#histories .history .history-date {
+    font-size: 25px;
+    color: #282828;
+    margin-right: 34px;
+}
+
+#histories .history .history-status {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#histories .history .history-comment {
+    font-size: 25px;
+    width: 100%;
+}

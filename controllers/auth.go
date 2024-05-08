@@ -11,7 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var jwtKey = []byte("my_secret_key")
+var jwtKey = []byte("asdfasffbgdfbfsvsdvcxzvsfvsdvadwegrthtyjuyjdgbxfvbadqwdqwdsvbgnjytujuykimgfbdsdsdf1233543")
 
 func AuthPage(c *gin.Context) {
 	user, exists := c.Get("user")
